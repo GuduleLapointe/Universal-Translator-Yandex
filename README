@@ -42,3 +42,5 @@ To do
 - Detect the most used languages and show them at beginning of the list
 - Allow to set a fixed list of prefferred languages to show first
 (probably before the auto-detected mostly used ones).
+- create json2List function to replace use of llJson2List (not
+compatible with 0.8)
