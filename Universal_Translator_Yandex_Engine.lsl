@@ -1,5 +1,5 @@
 // Universal Translator (Yandex)
-// Version Yandex-1.0
+// Version Yandex-1.0.2
 // ©2016 Gudule Lapointe gudule@speculoos.world
 // Based on Universal Translator 1.9.0 (Google) ©2006-2009 Hank Ramos
 
@@ -386,7 +386,9 @@ processHTTPResponse(integer type, string body, list params)
 
     if(speakerID = NULL_KEY) speakerID = llList2Key(params, 1);
     speakerName = llKey2Name(speakerID);
-    speakerName = strReplace(llGetSubString(speakerName, 0, llSubStringIndex(speakerName, "@") - 2), ".", " ");
+    if(llSubStringIndex(speakerName, "@") > 0)
+        speakerName = llGetSubString(speakerName, 0, llSubStringIndex(speakerName, "@") - 1);
+    speakerName = llStringTrim(strReplace(speakerName, ".", " "), STRING_TRIM);
 
     //===================
     //Process Translation
@@ -403,7 +405,7 @@ processHTTPResponse(integer type, string body, list params)
         //Perform Text Cleanup
         //x = llSubStringIndex(body, "\",\"detectedSourceLanguage\":\"");
         x = llSubStringIndex(body, "\"]}"); //"
-        list json = llJson2List(body);
+        list json = json2List(body);
         if(llList2String(json, 0) == "code")
         {
             translatedText = llList2String(json, 5);
@@ -504,6 +506,36 @@ checkApi()
     }
 }
 
+string trimQuotes(string str)
+{
+    str = llStringTrim(str, STRING_TRIM);
+    if (llGetSubString(str, 0, 0) == "[")
+        str = llDeleteSubString(str, 0, 0);
+    if (llGetSubString(str, 0, 0) == "\"") //"
+        str = llDeleteSubString(str, 0, 0);
+    if (llGetSubString(str, -1, -1) == "]")
+        str = llGetSubString(str, 0, llStringLength(str) - 2);
+    if (llGetSubString(str, -1, -1) == "\"") //"
+        str = llGetSubString(str, 0, llStringLength(str) - 2);
+    str = llStringTrim(str, STRING_TRIM);
+    return str;
+}
+list json2List(string json)
+{
+    list convertedList;
+    list tempList;
+    json = llGetSubString(json, 1, llStringLength(json) - 2);
+    tempList = llParseString2List(json, [",\""], []); //"
+    integer i = 0;
+    do {
+        string pair = llList2String(tempList, i);
+        convertedList += [ trimQuotes(llGetSubString(pair, 0, llSubStringIndex(pair, ":") -1)) ];
+        convertedList += [ trimQuotes(llGetSubString(pair, llSubStringIndex(pair, ":") + 1, -1)) ];
+        i++;
+    } while (i < llGetListLength(tempList));
+    return convertedList;
+}
+
 string strReplace(string str, string search, string replace) {
     return llDumpList2String(llParseStringKeepNulls((str),[search],[]),replace);
 }
@@ -512,6 +544,7 @@ debug(string message)
 {
     llOwnerSay("/me ("  + llGetScriptName() + "): " + message);
 }
+
 default
 {
     state_entry()

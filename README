@@ -1,4 +1,4 @@
-Universal Translator, Yandex Edition, v1.0
+Universal Translator, Yandex Edition, v1.0.2
 © 2016 Gudule Lapointe
 Based on Universal Translator 1.9.0 (Google) ©2006-2009 Hank Ramos
 
@@ -6,6 +6,12 @@ It is based on the excellent Universal Translator by Hank Ramos.
 However, the initial version was using Google translation engine API
 and Google decided to switch to a paid license. So I rewrote some
 parts of the code to use Yandex engine instead.
+
+Get the latest version in Speculoos' Grand Place little market
+􀀀  speculoos.world:8002:Grand Place
+or on
+  https://github.com/GuduleLapointe/Universal-Translator-Yandex
+(and if you make improvements, please share them there)
 
 New features
 ============
@@ -42,5 +48,8 @@ To do
 - Detect the most used languages and show them at beginning of the list
 - Allow to set a fixed list of prefferred languages to show first
 (probably before the auto-detected mostly used ones).
-- create json2List function to replace use of llJson2List (not
-compatible with 0.8)
+
+Notes
+=====
+We use a dedicated function json2List instead of llJson2List (not
+compatible with 0.8). It's a little bit rough, but it works.
