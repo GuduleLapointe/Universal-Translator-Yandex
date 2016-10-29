@@ -1,6 +1,6 @@
 // IM Handler
 // Part of Universal Translator (Yandex)
-// Version Yandex-1.0
+// Version Yandex-1.0.5
 // ©2016 Gudule Lapointe gudule@speculoos.world
 
 debug(string message)
@@ -30,9 +30,9 @@ default
     listen(integer channel, string name, key id, string message)
     {
         debug("got message "
-            + "\nchannel " + channel
+            + "\nchannel " + (string)channel
             + "\nname " + name
-            + "\nid " + id
+            + "\nid " + (string)id
             + "\nmessage " + message
         );
     }
