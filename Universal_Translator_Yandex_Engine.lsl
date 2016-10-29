@@ -1,5 +1,5 @@
 // Universal Translator (Yandex)
-// Version Yandex-1.0.2
+// Version Yandex-1.0.4
 // ©2016 Gudule Lapointe gudule@speculoos.world
 // Based on Universal Translator 1.9.0 (Google) ©2006-2009 Hank Ramos
 
@@ -45,7 +45,7 @@ list    languageCodes = [
 
 "sl", "es", "sw",
 "ru", "sr", "sk",
-"pl", "pt-PT", "ro",
+"pl", "pt", "ro",
 
 "yi", "", "",
 "uk", "vi", "cy",
@@ -482,10 +482,11 @@ processHTTPResponse(integer type, string body, list params)
         if (((listPos < 0) && (speakerLanguageReliable) || (speakerLanguageConfidence >= 0.18)))
         {
             //Analyze Data
-//            tempString = checkLanguage(llToLower(llGetSubString(body, llSubStringIndex(body, "{\"language\":\"") + 13, llSubStringIndex(body, "\",\"isReliable\":") - 1)));
-//            tempString = checkLanguage(llToLower(llGetSubString(body, llSubStringIndex(body, "{\"lang\":\"") + 13, llSubStringIndex(body, "\"}") - 1)));
-            tempString = checkLanguage(llToLower(llGetSubString(body, llSubStringIndex(body, "\"lang\":\"") + 8, llSubStringIndex(body, "\"}") - 1)));
+            tempList = json2List(body);
+//            tempString = checkLanguage(llToLower(llGetSubString(body, llSubStringIndex(body, "\"lang\":\"") + 8, llSubStringIndex(body, "\"}") - 1)));
 
+            if (tempString == "")
+                tempString = checkLanguage(llToLower(llList2String(tempList, 3)));
             if (tempString == "") return;
 
             if (speakerLanguageConfidence < 0.14)
