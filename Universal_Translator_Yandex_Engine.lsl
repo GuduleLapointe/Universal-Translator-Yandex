@@ -1,11 +1,15 @@
-// Universal Translator (Yandex)
-// Version Yandex-1.0.4
-// ©2016 Gudule Lapointe gudule@speculoos.world
-// Based on Universal Translator 1.9.0 (Google) ©2006-2009 Hank Ramos
-
-// Web Server Services powered by Yandex (instead of Google in the initial version,
-// as Google switched to a paid license for their translation API).
-
+/*
+ * Universal Translator (Yandex)
+ *
+ * Version: Yandex-1.2
+ * Authors: ©2016 Gudule Lapointe gudule@speculoos.world
+ *          Based on Universal Translator 1.9.0 (Google) ©2006-2009 Hank Ramos
+ * License: AGPLv3
+ * Source: https://git.magiiic.com/opensimulator/Universal-Translator-Yandex
+ *
+ * Web Server Services powered by Yandex (instead of Google in the initial
+ * version),as Google switched to a paid license for their translation API.
+ */
 
 //Variables
 list agentsInTranslation;

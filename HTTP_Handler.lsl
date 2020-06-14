@@ -1,8 +1,12 @@
-//HTTP Handler
-// Part of Universal Translator (Yandex)
-// Version Yandex-1.0
-// ©2016 Gudule Lapointe gudule@speculoos.world
-// Based on Universal Translator 1.9.0 (Google) ©2006-2009 Hank Ramos
+/*
+ * Universal Translator (Yandex) - HTTP Handler
+ *   Part of Universal Translator (Yandex)
+ * Version: Yandex-1.2
+ * Authors: ©2016 Gudule Lapointe gudule@speculoos.world
+ *          Based on Universal Translator 1.9.0 (Google) ©2006-2009 Hank Ramos
+ * License: AGPLv3
+ * Source: https://git.magiiic.com/opensimulator/Universal-Translator-Yandex
+ */
 
 list requestedTranslations;
 list requestedDetections;

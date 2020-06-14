@@ -1,0 +1,11 @@
+Wear on HUD or rez in-world
+
+If it's your first use, you will need to get a key from Yandex website. It is stored in a notecard. Key usage is limited, so remove the key notecard before giving translator to somebody else.
+
+The translator will detect your language when you speak and adjust accordingly.
+
+Click on the translator to choose language, opt out to stop receiving translations.
+
+If another translator is detected in the area, they will negociate and only one of them will actually process translations, avoiding chat flooding by multiple translators.
+
+More information on https://git.magiiic.com/opensimulator/Universal-Translator-Yandex

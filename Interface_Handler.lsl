@@ -1,8 +1,12 @@
-// Interface Handler
-// Part of Universal Translator (Yandex)
-// Version Yandex-1.0
-// ©2016 Gudule Lapointe gudule@speculoos.world
-// Based on Universal Translator 1.9.0 (Google) ©2006-2009 Hank Ramos
+/*
+ * Universal Translator (Yandex) - Interface Handler
+ *   Part of Universal Translator (Yandex)
+ * Version: Yandex-1.2
+ * Authors: ©2016 Gudule Lapointe gudule@speculoos.world
+ *          Based on Universal Translator 1.9.0 (Google) ©2006-2009 Hank Ramos
+ * License: AGPLv3
+ * Source: https://git.magiiic.com/opensimulator/Universal-Translator-Yandex
+ */
 
 //Variables
 integer randomDialogChannel;
@@ -482,10 +486,10 @@ checkAttach()
 {
     if (llGetAttached() > 0)
     {
-        llSetScale(<0.125, 0.125, 0.087>);
+        llSetScale(<0.05, 0.05, 0.05>);
         if(lastAttachPoint != llGetAttached())
         {
-            llSetPos(fn_makePos(llGetAttached(), <0.00000, 0.13500, 0.15433>));
+            llSetPos(fn_makePos(llGetAttached(), <0.00000, 0.1, 0.15>));
             llSetRot(<0,0,0,1>);
             lastAttachPoint = llGetAttached();
         }
@@ -494,7 +498,7 @@ checkAttach()
     }
     else
     {
-        llSetScale(<0.5, 0.5, 0.750>);
+        llSetScale(<0.5, 0.5, 0.5>);
         llReleaseControls();
         llMessageLinked(llGetLinkNumber(), 3792114, (string)FALSE, NULL_KEY);
     }
@@ -521,12 +525,19 @@ default
         randomDialogChannel = -(integer)llFrand(2147483647);
 
         llMessageLinked(LINK_SET, 20957454, "", NULL_KEY);
-        if(llGetInventoryKey("Universal Translator Engine") != NULL_KEY) llResetOtherScript("Universal Translator Engine");
-        if(llGetInventoryKey("Universal Translator Yandex Engine") != NULL_KEY) llResetOtherScript("Universal Translator Yandex Engine");
-        llResetOtherScript("HTTP Handler");
-        if(llGetInventoryKey("IM Handler") != NULL_KEY) llResetOtherScript("IM Handler");
-        if(llGetInventoryKey("Auto-Update") != NULL_KEY) llResetOtherScript("Auto-Update");
-        if(llGetInventoryKey("Donation") != NULL_KEY) llResetOtherScript("Donation");
+        integer s=0;
+        while(s < llGetInventoryNumber(INVENTORY_SCRIPT))
+        {
+            string script = llGetInventoryName(INVENTORY_SCRIPT, s);
+            if(llSubStringIndex(script, "Universal Translator") >= 0
+            || llSubStringIndex(script, "IM Handler") >= 0
+            || llSubStringIndex(script, "HTTP Handler") >= 0
+            || llSubStringIndex(script, "Auto-Update") >= 0
+            || llSubStringIndex(script, "Donation") >= 0
+            )
+            llResetOtherScript(script);
+            s++;
+        }
 
         //Other Setup
         llSleep(5);
