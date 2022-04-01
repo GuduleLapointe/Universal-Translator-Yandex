@@ -2,7 +2,7 @@
 
 ## Important note:
 
-As noted by sninksnoodle on Oct 27, 2020, Yandex does not provide free API keys anymore. The main goal of this fork was to provide an free alternative to Google Translate, so the project is now obolete.
+As noted by sninksnoodle on Oct 27, 2020, **Yandex does not provide free API keys anymore** (#1). The main goal of this fork was to provide an free alternative to Google Translate, so the project is now obolete.
 
 However, this code also fixed a couple of bugs in the available version of Hank Hamos Universal Translator (which dates 2015), so it might be worth to catch and bring these fixes to the Google Translate version.
 
